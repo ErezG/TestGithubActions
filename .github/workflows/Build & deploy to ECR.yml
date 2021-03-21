@@ -81,3 +81,12 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --file MiniCalc/MiniCalc/Dockerfile MiniCalc
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+    - name: Coralogix tag
+      id: coralogix-tag
+      uses: 365scores/Coralogix-AddTag@v0
+      with:
+        key: ${{ secrets.CORALOGIX_COMPANY_KEY }}
+        application: MiniCalc
+        subsystem: TestSystem,CalcQA
+        name: TestTag
