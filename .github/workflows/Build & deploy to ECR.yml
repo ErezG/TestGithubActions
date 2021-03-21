@@ -84,7 +84,7 @@ jobs:
 
     - name: Coralogix tag
       id: coralogix-tag
-      uses: 365scores/Coralogix-AddTag@v0
+      uses: 365scores/Coralogix-AddTag@v0.1.0
       with:
         key: ${{ secrets.CORALOGIX_COMPANY_KEY }}
         application: MiniCalc
