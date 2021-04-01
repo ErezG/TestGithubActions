@@ -16,4 +16,4 @@ jobs:
     - name: Run Build Action
       uses: 365Scores/CI-CD-dotnet-ECR-AWS@main
       with:
-        project_path: /MainFolder/Mocuda.csproj
+        project_path: /MainFolder/Zimbabuwa.csproj
