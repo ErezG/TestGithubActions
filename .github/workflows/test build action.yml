@@ -1,0 +1,19 @@
+on:
+  workflow_dispatch:
+
+name: Test Build Action
+
+jobs:  
+  deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    environment: sandbox
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      
+    - name: Setup .NET
+      uses: 365Scores/CI-CD-dotnet-ECR-AWS@main
+      with:
+        project_path: /MainFolder/Mocuda.csproj
