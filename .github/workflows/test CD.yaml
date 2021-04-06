@@ -1,0 +1,40 @@
+on:
+  workflow_dispatch:
+    inputs:
+      deployment_env:
+        description: 'Deploy to this environment'     
+        required: true
+
+name: Test CD action
+
+jobs:  
+  deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    environment: sandbox
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+    
+    - name: deploy to targets
+      uses: 365scores/deploy-to-targets@main
+      with:
+        env-key: ${{ github.event.inputs.deployment_env }}
+        spot_io_token: ${{ secrets.SPOT_IO_TOKEN }}
+      
+    #- name: Run Build Action
+    #  uses: 365Scores/CI-CD-dotnet-ECR-AWS@main
+    #  with:
+    #    project_path: ./DataServiceCore/DataServiceCore.csproj
+    #    dockerfile_path: ./DataServiceCore/Dockerfile.github
+    #    ecr_registry: ${{ steps.login-ecr.outputs.registry }}
+    #    ecr_repository: ds-sandbox
+    #    docker_tag: github-actions-test

@@ -1,0 +1,21 @@
+envs:  
+  qa:
+    publish-to:
+      ecr-repository: ds-sandbox
+      ecr-tag: cd-action-test
+    targets:
+    - type: ec2-instance
+      region: us-east-1
+      id: i-02e4fe6226c2b155e
+      
+    - type: ec2-asg
+      region: us-east-1
+      name: ASG-90Min
+      instance-warmup: 360
+      min-healthy-percentage: 30
+      
+    - type: spotinst-eg
+      id: sig-3961ffae
+      account: act-928488c1
+      batch-size-percentage: 25
+      grace-period: 360
