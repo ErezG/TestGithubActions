@@ -14,8 +14,8 @@ envs:
       instance-warmup: 360
       min-healthy-percentage: 30
       
-    - type: spotinst-eg
-      id: sig-3961ffae
-      account: act-928488c1
-      batch-size-percentage: 25
-      grace-period: 360
+    #- type: spotinst-eg
+    #  id: sig-3961ffae
+    #  account-id: act-928488c1
+    #  batch-size-percentage: 25
+    #  grace-period: 900
